@@ -1,0 +1,155 @@
+<!-- HERO -->
+<section class="hero page-enter">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1600&q=85"
+         alt="Fashion Hero"
+         (error)="$any($event.target).src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=85'" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <span class="section-label">New Collection 2026</span>
+    <h1 class="hero-title">Dress with<br><em>Intention</em></h1>
+    <p class="hero-subtitle">Discover curated fashion pieces that redefine your everyday elegance — from sun-kissed sundresses to breathtaking evening gowns.</p>
+    <div class="hero-actions">
+      <a routerLink="/collection" class="btn-primary">Explore Collection</a>
+      <a routerLink="/contact" class="btn-outline">Book a Styling</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">200+</span><span class="stat-label">Styles</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">15K+</span><span class="stat-label">Happy Clients</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Designers</span></div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">↓</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>New Arrivals</span><span class="dot">✦</span>
+    <span>Summer 2026</span><span class="dot">✦</span>
+    <span>Free Shipping Over $150</span><span class="dot">✦</span>
+    <span>Evening Gowns</span><span class="dot">✦</span>
+    <span>Exclusive Designs</span><span class="dot">✦</span>
+    <span>New Arrivals</span><span class="dot">✦</span>
+    <span>Summer 2026</span><span class="dot">✦</span>
+    <span>Free Shipping Over $150</span><span class="dot">✦</span>
+    <span>Evening Gowns</span><span class="dot">✦</span>
+    <span>Exclusive Designs</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories section-pad">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Shop By Style</span>
+      <h2 class="section-title">Find Your Look</h2>
+    </div>
+    <div class="categories-grid">
+      @for (cat of categories; track cat.name) {
+        <a routerLink="/collection" class="category-card">
+          <div class="category-img">
+            <img [src]="cat.img" [alt]="cat.name" loading="lazy"
+                 (error)="$any($event.target).src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80'" />
+            <div class="category-overlay"></div>
+          </div>
+          <div class="category-info">
+            <span class="cat-tag">{{ cat.tag }}</span>
+            <h3>{{ cat.name }}</h3>
+            <p>{{ cat.count }} styles</p>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured section-pad">
+  <div class="container">
+    <div class="featured-header">
+      <div>
+        <span class="section-label">Hand-Picked for You</span>
+        <h2 class="section-title">Featured Dresses</h2>
+      </div>
+      <a routerLink="/collection" class="btn-outline">View All</a>
+    </div>
+    <div class="products-grid">
+      @for (item of featured; track item.name) {
+        <div class="product-card">
+          <div class="product-img" [style.background]="item.color">
+            <img [src]="item.img" [alt]="item.name" loading="lazy"
+                 (error)="$any($event.target).src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=80'" />
+            @if (item.tag) {
+              <span class="product-tag">{{ item.tag }}</span>
+            }
+            <button class="wish-btn" [class.active]="wishlisted.has(item.name)" (click)="toggleWish(item.name)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+            <div class="product-actions">
+              <button class="action-btn primary">Quick View</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <h4>{{ item.name }}</h4>
+            <p class="product-price">${{ item.price }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner-section">
+  <div class="banner-img">
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=85" alt="Banner"
+         (error)="$any($event.target).src='https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1400&q=85'" />
+    <div class="banner-overlay"></div>
+  </div>
+  <div class="banner-content container">
+    <span class="section-label">Limited Time Offer</span>
+    <h2 class="section-title" style="color:#fff">Up to 40% Off<br>Summer Sale</h2>
+    <p style="color:rgba(255,255,255,0.8); margin-bottom:28px; font-size:1rem">Fresh styles, incredible prices. Don't miss your chance to shine this season.</p>
+    <a routerLink="/collection" class="btn-primary">Shop the Sale</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials section-pad">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-label">What They Say</span>
+      <h2 class="section-title">Loved by Thousands</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"The quality is absolutely stunning. I wore the Velvet Dreams dress to my anniversary dinner and received compliments all night."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#f4c5c5">S</div>
+          <div><strong>Sophia L.</strong><span>Paris, France</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card featured-review">
+        <div class="stars">★★★★★</div>
+        <p>"Lumière has completely transformed my wardrobe. Every piece feels like it was made just for me — elegant, comfortable, and uniquely beautiful."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#d4c5e8">M</div>
+          <div><strong>Mia K.</strong><span>New York, USA</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Fast shipping, perfect fit, and the packaging itself is a work of art. This is my go-to brand for every special occasion."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:#f9e8c8">A</div>
+          <div><strong>Amara T.</strong><span>London, UK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

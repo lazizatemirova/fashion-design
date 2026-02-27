@@ -1,0 +1,91 @@
+<div class="contact-page page-enter">
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="page-header-bg">
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80"
+           alt="Contact"
+           (error)="$any($event.target).src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80'" />
+      <div class="page-header-overlay"></div>
+    </div>
+    <div class="page-header-content container">
+      <span class="section-label">We're Here For You</span>
+      <h1 class="section-title" style="color:#fff; font-size: clamp(2.2rem, 5vw, 3.5rem)">Get in Touch</h1>
+      <p style="color:rgba(255,255,255,0.75); font-size:1rem">Questions, styling advice, or just to say hello — we'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="contact-section container">
+    <!-- INFO CARDS -->
+    <div class="contact-info">
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Visit Us</h4>
+        <p>24 Rue de la Mode<br>Paris, France 75008</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l1.13-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h4>Call Us</h4>
+        <p>+33 1 23 45 67 89<br>Mon–Fri, 9am–6pm</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h4>Email Us</h4>
+        <p>hello&#64;lumiere.fashion<br>support&#64;lumiere.fashion</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h4>Live Chat</h4>
+        <p>Available on our app<br>7 days a week</p>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form-wrapper">
+      <div class="form-header">
+        <span class="section-label">Send a Message</span>
+        <h2 class="section-title">We Reply Within 24 Hours</h2>
+      </div>
+
+      @if (!submitted()) {
+        <form class="contact-form" (ngSubmit)="onSubmit()" #f="ngForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input id="name" type="text" name="name" [(ngModel)]="form.name" placeholder="Sophie Martin" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" name="email" [(ngModel)]="form.email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input id="subject" type="text" name="subject" [(ngModel)]="form.subject" placeholder="How can we help?" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" [(ngModel)]="form.message" rows="5" placeholder="Tell us anything..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary submit-btn" [disabled]="loading()">
+            @if (loading()) { <span>Sending...</span> } @else { <span>Send Message</span> }
+          </button>
+        </form>
+      } @else {
+        <div class="success-state">
+          <div class="success-icon">✉️</div>
+          <h3>Message Sent!</h3>
+          <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+          <button class="btn-outline" (click)="reset()">Send Another</button>
+        </div>
+      }
+    </div>
+  </section>
+</div>
